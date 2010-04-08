@@ -1,0 +1,8 @@
+
+*.suo
+/_ReSharper.lab4/
+*.exe
+*.pdb
+*.manifest
+/lab3/obj/
+*.user
