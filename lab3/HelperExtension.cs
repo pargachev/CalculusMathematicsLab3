@@ -14,5 +14,10 @@ namespace lab3
             string[] array = stringDoubleArray.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             return array.Select(x => double.Parse(x, CultureInfo.InvariantCulture)).ToArray();
         }
+
+        public static string ToFormatedString(this double[] array)
+        {
+            return string.Join(" ", array.Select(x => x.ToString("F3", CultureInfo.InvariantCulture)).ToArray());
+        }
     }
 }
