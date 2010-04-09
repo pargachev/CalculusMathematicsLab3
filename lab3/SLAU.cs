@@ -39,22 +39,35 @@ namespace lab3
         {
             double[,] aPrior;
             double[,] a = (double[,])A.Clone();
+            int max = 0;
+               for (int k = 1; k < N; k++)
+                  {
+                      if (a[k, 0] > a[max, 0])
+                         {
+                             max = k;
+                         }
+                  }
+               for (int j = 0; j < N + 1; j++)
+                  {
+                      Double t = a[0, j];
+                      a[0, j] = a[max, j];
+                      a[max, j] = t;
+                  }
+                   for (int k = 0; k < N; k++)
+                   {
+                       aPrior = a;
+                       a = (double[,])aPrior.Clone();
 
+                       for (int j = k; j < N + 1; j++)
+                       {
 
-            for (int k = 0; k < N; k++)
-            {
-                aPrior = a;
-                a = (double[,])aPrior.Clone();
-
-                for (int j = k; j < N + 1; j++)
-                {
-                    a[k, j] = aPrior[k, j] / aPrior[k, k];
-                    for (int i = k + 1; i < N; i++)
-                    {
-                        a[i, j] = aPrior[i, j] - aPrior[i, k] * a[k, j];
-                    }
-                }
-            }
+                           a[k, j] = aPrior[k, j] / aPrior[k, k];
+                           for (int i = k + 1; i < N; i++)
+                           {
+                               a[i, j] = aPrior[i, j] - aPrior[i, k] * a[k, j];
+                           }
+                       }
+                   }
 
             double[] x = new double[N];
 
